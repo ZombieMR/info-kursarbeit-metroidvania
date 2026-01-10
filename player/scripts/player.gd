@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody2D # erweitert/baut auf bereits existierende klasse 
  
+const DEBUG_JUMP = preload("uid://d3fxe3317dcqp")
 
 #region export-variablen
-@export var bewegungsgeschwindigkeit: float = 150
+@export var move_speed: float = 150
 #endregion
 
 
@@ -17,6 +18,7 @@ var previous_state : PlayerState :
 #region standart-variablen
 var direction : Vector2 = Vector2(0, 0)
 var gravity : float = 981
+var gravity_mult : float = 1.0
 #endregion
 
 
@@ -32,10 +34,10 @@ func _process(_delta: float) -> void: #erstellen "dauerschleife"
 	change_state(current_state.process(_delta))
 	pass
 
-func _physics_process(_delta: float) -> void: #erstellen physik-"dauerschleife"
-	velocity.y += gravity * _delta
+func _physics_process(delta: float) -> void: #erstellen physik-"dauerschleife"
+	velocity.y += gravity * delta * gravity_mult
 	move_and_slide()
-	change_state(current_state.physics_process(_delta))
+	change_state(current_state.physics_process(delta))
 	pass
 
 
@@ -75,4 +77,15 @@ func update_direction() ->  void: # bewegungsvektor richtung ändern
 	var x_axis = Input.get_axis("left", "right")
 	var y_axis = Input.get_axis("up", "down")
 	direction = Vector2(x_axis, y_axis)
+	pass
+
+
+
+func add_debug_ind(color : Color = Color.RED) -> void:
+	var d : Node2D = DEBUG_JUMP.instantiate() # debug-jump-szene kopieren und in playground auf player platzieren
+	get_tree().root.add_child(d)
+	d.global_position = global_position
+	d.modulate = color
+	await get_tree().create_timer(3).timeout
+	d.queue_free()
 	pass

@@ -4,6 +4,8 @@ const DEBUG_JUMP = preload("uid://d3fxe3317dcqp")
 
 #region export-variablen
 @export var move_speed: float = 150
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
 #endregion
 
 
@@ -72,11 +74,17 @@ func change_state(new_state : PlayerState) -> void: # state ändern
 	$Label.text = current_state.name
 	pass
 func update_direction() ->  void: # bewegungsvektor richtung ändern
-	#var prev_direction : Vector2 = direction
+	var prev_direction : Vector2 = direction
 	# fix deadzones controller
 	var x_axis = Input.get_axis("left", "right")
 	var y_axis = Input.get_axis("up", "down")
 	direction = Vector2(x_axis, y_axis)
+	
+	if prev_direction.x != direction.x:
+		if direction.x < 0:
+			sprite.flip_h = true # wenn nach links bewegen, sprite horizontal flippen
+		elif direction.x > 0: # wenn nach rechts bewegen, zurück flippen
+			sprite.flip_h = false
 	pass
 
 

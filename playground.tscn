@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqvhgs1x6jgw1"]
+[gd_scene load_steps=8 format=3 uid="uid://cqvhgs1x6jgw1"]
 
 [ext_resource type="PackedScene" uid="uid://cb1vuqm5auik4" path="res://player/player.tscn" id="1_rupst"]
 
@@ -13,10 +13,21 @@ height = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt17y"]
 size = Vector2(32, 32)
 
+[sub_resource type="Gradient" id="Gradient_rupst"]
+offsets = PackedFloat32Array(0, 0.99333334)
+colors = PackedColorArray(0.36300275, 0.32554367, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wt17y"]
+gradient = SubResource("Gradient_rupst")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rupst"]
+size = Vector2(64, 64)
+
 [node name="Playground" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(15, 131)
+position = Vector2(13, 131)
 scale = Vector2(0.8749992, 8.1875)
 texture = SubResource("GradientTexture2D_rupst")
 
@@ -26,7 +37,7 @@ texture = SubResource("GradientTexture2D_rupst")
 shape = SubResource("RectangleShape2D_wt17y")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(464.99997, 132)
+position = Vector2(467, 132)
 scale = Vector2(0.8749992, 8.1875)
 texture = SubResource("GradientTexture2D_rupst")
 
@@ -39,8 +50,8 @@ shape = SubResource("RectangleShape2D_wt17y")
 shape = SubResource("RectangleShape2D_wt17y")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(325, 201)
-scale = Vector2(1.1249999, 0.90624964)
+position = Vector2(375.00003, 219)
+scale = Vector2(1.565, 2.586247)
 texture = SubResource("GradientTexture2D_rupst")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D4"]
@@ -63,7 +74,7 @@ texture = SubResource("GradientTexture2D_rupst")
 shape = SubResource("RectangleShape2D_wt17y")
 
 [node name="Sprite2D5" type="Sprite2D" parent="."]
-position = Vector2(240, 17)
+position = Vector2(240, 12)
 scale = Vector2(14.96875, 1)
 texture = SubResource("GradientTexture2D_rupst")
 
@@ -84,4 +95,15 @@ texture = SubResource("GradientTexture2D_rupst")
 shape = SubResource("RectangleShape2D_wt17y")
 
 [node name="Player" parent="." instance=ExtResource("1_rupst")]
-position = Vector2(232, 101)
+position = Vector2(305, 98)
+
+[node name="ein-weg-plattform" type="Sprite2D" parent="."]
+position = Vector2(206, 166)
+scale = Vector2(1.8536575, 0.14896157)
+texture = SubResource("GradientTexture2D_wt17y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ein-weg-plattform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ein-weg-plattform/StaticBody2D"]
+shape = SubResource("RectangleShape2D_rupst")
+one_way_collision = true

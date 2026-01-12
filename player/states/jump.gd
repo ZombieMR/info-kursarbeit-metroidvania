@@ -20,6 +20,7 @@ func exit() -> void: # was passiert wenn state verlassen
 
 
 func handle_input(event : InputEvent) -> PlayerState: # was passiert wenn input gedrückt/losgelassen wird
+	player.animation_player.play("Jump") #animation abspielen
 	if event.is_action_released("jump"): # wenn spieler jump loslässt, zu fall wechseln
 		player.velocity.y *= 0.5
 		return fall

@@ -13,7 +13,7 @@ config_version=5
 config/name="Info Kursarbeit Metroidvania"
 config/description="Informatik Kursarbeit 12/2 2026 Marie Panzer Moritz Reiche 
 Metroidvania-2D-Plattformer"
-run/main_scene="uid://cqvhgs1x6jgw1"
+run/main_scene="uid://dmk8re8q75p1"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://cceocrrh4kshx"
 

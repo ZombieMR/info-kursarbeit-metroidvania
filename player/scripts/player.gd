@@ -71,7 +71,7 @@ func change_state(new_state : PlayerState) -> void: # state ändern
 	states.push_front(new_state) # state zu neuem ändern, alte nach hinten verschieben
 	current_state.enter()
 	states.resize(3) # nur letzten 3 vergangenen states in liste speichern
-	$Label.text = current_state.name
+	$Label.text = current_state.name # debug-label-text auf aktuellen state setzen
 	pass
 func update_direction() ->  void: # bewegungsvektor richtung ändern
 	var prev_direction : Vector2 = direction
